@@ -1,12 +1,13 @@
-import dbConfig from "../config/db.config.js"
-import mongoose from "mongoose"
-import usersModel from "./users.model"
+import mongoose from 'mongoose'
+import dbConfig from '../config/db.config'
+import usersModel from './users.model'
 
 mongoose.Promise = global.Promise
 
-const db = {}
-db.mongoose = mongoose
-db.url = dbConfig.url
-db.user = usersModel(mongoose)
+const db = {
+  mongoose: mongoose,
+  url: dbConfig.url,
+  user: usersModel(mongoose),
+}
 
 export default db

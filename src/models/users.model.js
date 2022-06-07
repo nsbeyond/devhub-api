@@ -1,4 +1,4 @@
-export default mongoose => {
+export default (mongoose) => {
   const schema = mongoose.Schema(
     {
       username: String,
@@ -7,12 +7,13 @@ export default mongoose => {
       birth_date: String,
       profile_image: String,
     },
-    { timestamps: true }
+    { timestamps: true },
   )
-  
-  schema.method('toJSON', function() {
+
+  schema.method('toJSON', function toJSON() {
     const { __v, _id, ...object } = this.toObject()
     object.id = _id
+    delete object.password
     return object
   })
 

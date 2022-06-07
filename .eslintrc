@@ -1,0 +1,18 @@
+{
+    "extends": "airbnb",
+    "plugins": [
+        "react",
+        "jsx-a11y",
+        "import"
+    ],
+    "rules": {
+        "no-console": "off",
+        "no-unused-vars": "warn",
+        "semi": "off",
+        "object-curly-newline": "off",
+        "indent": [
+            "error",
+            "space"
+        ]
+    }
+}
