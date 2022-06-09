@@ -9,9 +9,8 @@ import fastifyStatic from 'fastify-static'
 import colors from 'colors'
 import path from 'path'
 import authRoutes from './routes/auth.route'
-import db from './models'
+import marketRoutes from './routes/market.route'
 import { Sequelize } from 'sequelize'
-
 const config = process.env
 
 // Initial DB
@@ -77,6 +76,9 @@ server
   .register(authRoutes, {
     prefix: config.API_PREFIX || 'api/v1',
   })
+  .register(marketRoutes, {
+    prefix: config.API_PREFIX || 'api/v1',
+  })
   .ready((err) => {
     if (err) console.error(err)
     // server.io.on("connection", (socket) => {
@@ -103,9 +105,9 @@ const start = async () => {
   }
 }
 
-const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname')
+const sequelize = new Sequelize('postgres://postgres:example@docker.vm:5432/market')
 
-const connectWithRetry = () => {
+const connectWithRetry = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
